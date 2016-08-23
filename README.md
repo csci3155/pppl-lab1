@@ -1,8 +1,9 @@
-# Principles and Practice in Programming Languages: Lab 1
+# Principles and Practice in Programming Languages
+# Lab 1
 
 This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact me ([Bor-Yuh Evan Chang](https://www.cs.colorado.edu/~bec)).
 
-Refer to the [lab handouts](https://www.cs.colorado.edu/~bec/courses/csci3155/assignments.html) for details about each assignment.  This file provides some information to help you get started with setting up your development environment.
+Refer to the lab handouts for details about each assignment.  This file provides some information to help you get started with setting up your development environment.
 
 ## Integrity of the Course Materials
 
@@ -10,9 +11,10 @@ The development effort in the course materials, including these lab assignments,
 
 ## Repository Organization
 
-In the directory that you want your project files, clone this repository to your local machine using the following command:
+In the directory that you want your project files, clone this repository to your local machine. You can determine the clone URL by clicking `Clone or download` in the Github
+interface.
 
-    $ git clone -b lab1 https://github.com/bechang/pppl-labs.git lab1
+    $ git clone <your .git URL>
 
 In this document, the
 
@@ -20,9 +22,9 @@ In this document, the
 
 simply stands for the shell prompt.
 
-The above command will create the directory `lab1` (based on the last argument). Change into that directory
+The above command will create the directory `pppl-lab1`.
 
-    $ cd lab1
+    $ cd pppl-lab1
 
 All other commands in this document will assume that your are in this directory.
 
@@ -36,13 +38,15 @@ For Lab 1, the most important project files are shown below.
 .
 ├── README.md  (this file)
 ├── jsy.sh     (run through a .jsy through Node.js)
+├── lab1.pdf   (the lab handout)
 ├── lab1.sh    (run your Javascripty intepreter)
 ├── src
 │   ├── main
 │   │   └── scala
 │   │       └── jsy
 │   │           ├── lab1                 (lab-specific support files will here)
-│   │           │   ├── Parser.scala
+│   │           │   ├── Lab1Like.scala      (the Lab1 interface)
+│   │           │   ├── Parser.scala        (the Javascripty parser)
 │   │           │   └── ast.scala           (the Javascripty AST classes)
 │   │           ├── student              (files for you to edit will be here)
 │   │           │   ├── Lab1.scala          (implementation template to **submit**)
@@ -56,11 +60,15 @@ For Lab 1, the most important project files are shown below.
 │       │       ├── test102_divbyzero.ans
 │       │       └── test102_divbyzero.jsy
 │       └── scala
-│           └── Lab1Spec.scala   (your ScalaTest unit tests)
+│           └── jsy
+│               ├── student
+│               │   └── Lab1Spec.scala     (your ScalaTest unit tests)
+│               └── tester
+│                   └── JavascriptyTester.scala
 └── testlab1.sh  (run your Lab1Spec)
 ```
 
-The files for you to edit and submit will be in `src/main/jsy/student`.
+The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
 
 ## Scala Development Tools
 
@@ -68,7 +76,7 @@ We support [IntelliJ IDEA](https://www.jetbrains.com/idea/) on the [CU CS Virtua
 
 After setting up the CU CS VM, you will need to [download](https://www.jetbrains.com/idea/download/) and install IntelliJ IDEA. The Community Edition will be fine.
 
-The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.10. We will standardize on 2.10.5 (the latest Scala 2.10). The project files have not yet been ported to Scala 2.11. For the most part, you do not need to worry about the Scala version because we are using sbt for building.
+The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.11. We will standardize on 2.11.8 (the latest Scala 2.11). For the most part, you do not need to worry about the Scala version because we are using sbt for building.
 
 ### IntelliJ Import
 
@@ -98,7 +106,7 @@ Then, again from the splash
 
     Import Project
 
-and then select the directory with the project files (i.e., `pppl-labs`) and hit Ok. On the next dialog, select
+and then select the directory with the project files (i.e., `pppl-lab1`) and hit Ok. On the next dialog, select
 
     Import project from external model > SBT > Next
 
@@ -126,7 +134,7 @@ This command
 
 deletes the previous compilation.
 
-It is often convenient to run sbt interactively
+It is most convenient to run sbt interactively
 
     $ sbt
 
@@ -134,13 +142,17 @@ and then run via
 
     > compile
 
-at the sbt prompt. The slow load time of sbt is due to starting a JVM instance, which is saved by starting it once and re-using the instance for several operations.
+at the sbt prompt. The slow load time of sbt is due to starting a JVM instance, which is saved by starting it once and re-using the instance for several operations. In the following, we will show sbt commands from the sbt prompt as above.
+
+In sbt, you can also prefix any command with `~` to re-execute the command when any file in the project is updated.
+
+    > ~compile
 
 ### Scala Interactive Console
 
-From the command-line, you can start the Scala console using the command
+From sbt, you can start the Scala console using the command
 
-    $ sbt console
+    > console
 
 and can import the functions in your lab in the following way
 
@@ -162,33 +174,23 @@ We provide some unit tests in `src/test/scala/Lab1Spec.scala` to drive your impl
 
 You can also run all test objects under the `src/test` directory via
 
-    $ sbt test
+    > test
 
 Or you can specify, specifically
 
-    $ sbt "test-only Lab1Suite"
-
-Note that the quotes are important when passing arguments to sbt from the command-line (though they are optional when running in the sbt interactive console). For your convenience, we have a script
-
-    $ ./testlab1.sh
-
-to run Lab1Suite using sbt.
+    > test-only Lab1Suite
 
 ## Your Javascripty Interpreter
 
-You can run your Javascripty interpreter with a file (e.g., tests in `src/test/resources`) in IntelliJ by setting up a Run/Debug Configuration.
+You can run your Javascripty interpreter with a file (e.g., tests in `src/test/resources`) from sbt or the command-line:
 
-    Run > Edit Configurations ...
-
-It may be easier to run your Javascripty interpreter on the command-line.
-
-    $ sbt "runMain jsy.student.Lab1 <arguments>"
+    > runMain jsy.student.Lab1 <arguments>
 
 Or for your convenience,
 
     $ ./lab1.sh <arguments>
 
-For quick experimentation, it is more convenient to use the Scala Console window (in IntelliJ or on the command-line) or a Scala Worksheet (in IntelliJ).
+However, it is rare that you will want to run your Javascripty interpreter directly, as you will driving your implementation via tests in `Lab1Spec`.
 
 ## Node.js
 
@@ -236,7 +238,7 @@ Then, you need these commands for the remaining tools:
 
 Here are some reasons that we have observed.
 
-* In your `pppl-labs` folder, if you do not see `build.sbt`, then it is likely that you have not yet checked-out the `lab1` branch.
+* In your `pppl-lab1` folder, if you do not see `build.sbt`, then it is likely that you have the project files.
 
 * You need to have sbt installed. If you're using the CU CS VM, you
 
@@ -253,7 +255,7 @@ JDK 1.7 or 1.8 should be fine. We saw on some VMs that there is a JDK 1.7 listed
 
 ### What if I can't run Lab1 or Lab1Spec from IntelliJ?
 
-It could be that you did not import your project as an SBT project. Try to import the project again. You can remove any of IntelliJ's meta-data by deleting the `.idea/` directory in `pppl-labs/`.
+It could be that you did not import your project as an SBT project. Try to import the project again. You can remove any of IntelliJ's meta-data by deleting the `.idea/` directory in `pppl-lab1/`.
 
 ### Wow, the VM is really slow on my machine.
 
