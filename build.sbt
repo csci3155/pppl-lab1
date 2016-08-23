@@ -2,7 +2,7 @@ name := "pppl-lab1"
 
 organization := "edu.colorado.cs"
 
-version := "3.1.0"
+version := "3.1.1"
 
 scalaVersion := "2.11.8"
 
@@ -11,7 +11,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation")
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
   "org.scalactic" %% "scalactic" % "3.0.0",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test")
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 )
 
 // set logging to show only errors during runs
