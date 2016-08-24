@@ -1,6 +1,6 @@
 package jsy.student
 
-import jsy.lab1.Lab1Like
+import jsy.lab1._
 import jsy.tester.JavascriptyTester
 import org.scalatest._
 
