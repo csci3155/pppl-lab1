@@ -68,7 +68,7 @@ For Lab 1, the most important project files are shown below.
 └── testlab1.sh  (run your Lab1Spec)
 ```
 
-The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
+The files for you to edit and submit will be in `src/main/scala/jsy/student` or `src/test/scala/jsy/student`.
 
 ## Scala Development Tools
 
