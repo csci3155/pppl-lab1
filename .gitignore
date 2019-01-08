@@ -1,3 +1,6 @@
 .idea
 target/
-project/
+project/target/
+project/project/
+.ivy2
+.sbt

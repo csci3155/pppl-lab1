@@ -27,7 +27,7 @@ sealed class DoWith[W,+R] private (doer: W => (W,R)) {
 object DoWith {
   def doget[W]: DoWith[W, W] = new DoWith[W, W]({ w => (w, w) })
   def doput[W](w: W): DoWith[W, Unit] = new DoWith[W, Unit]({ _ => (w, ()) })
-  def doreturn[W, R](r: R): DoWith[W, R] = new DoWith[W, R]({ w => (w, r) }) /* doget map { _ => r } */
-  def domodify[W](f: W => W): DoWith[W, Unit] = new DoWith[W, Unit]({ w => (f(w), ()) }) /* doget flatMap { w => doput(f(w)) } */
+  def doreturn[W, R](r: R): DoWith[W, R] = new DoWith[W, R]({ w => (w, r) })  // doget map { _ => r }
+  def domodify[W](f: W => W): DoWith[W, Unit] = new DoWith[W, Unit]({ w => (f(w), ()) })  // doget flatMap { w => doput(f(w)) }
 }
 

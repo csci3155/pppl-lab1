@@ -1,25 +1,50 @@
 name := "pppl-lab1"
 
-organization := "edu.colorado.cs"
+lazy val commonSettings = Seq(
+  organization := "edu.colorado.cs",
+  version := "3.4.4",
 
-version := "3.1.2"
+  scalaVersion := "2.12.8",
+  scalacOptions ++= Seq(
+    "-unchecked", // Enable additional warnings where generated code depends on assumptions.
+    "-feature", // Emit warning for features that should be imported explicitly
+    "-Xcheckinit", // Wrap field accessors to throw an exception on uninitialized access
+    "-deprecation", // Emit warning and location for usages of deprecated APIs.
+    "-explaintypes", // Explain type errors in more detail.
+    "-Ywarn-extra-implicit", // more than one implicit parameter section is defined
+    "-Xlint:nullary-unit", // nullary methods return Unit
+    "-Xlint:inaccessible", // inaccessible types in method signatures
+    "-Xlint:nullary-override", // non-nullary def f() overrides nullary def f
+    "-Xlint:infer-any", // a type argument is inferred to be Any
+    "-Xlint:missing-interpolator", // literal appears to be missing an interpolator id
+    "-Xlint:option-implicit", // apply used implicit view
+    "-Xlint:package-object-classes", // object defined in package object
+    "-Xlint:unsound-match", // may not be typesafe
+    "-Xlint:stars-align", // wildcard must align with sequence component
+    "-Xlint:constant", // a constant arithmetic expression results in an error
+    //"-Xfatal-warnings", // turn warnings into errors
+  ),
+  libraryDependencies ++= Seq(
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.6",
+    "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
+    "org.scalactic" %% "scalactic" % "3.0.0",
+    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  ),
 
-scalaVersion := "2.11.8"
+  // set logging to show only errors during runs
+  logLevel in run := Level.Error,
+  logLevel in runMain := Level.Error,
 
-scalacOptions ++= Seq("-unchecked", "-deprecation")
+  // JVM arguments: 8G heap size, 2M stack size
+  javaOptions in Test += "-Xmx8G -Xss2M",
 
-libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
-  "org.scalactic" %% "scalactic" % "3.0.0",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  // scoverage options: always build with coverage
+  //coverageEnabled := true,
+
+  // scalatest options: -o standard output, D durations
+  // -e stderr
+  testOptions in Test += Tests.Argument("-e")
 )
 
-// set logging to show only errors during runs
-logLevel in run := Level.Error
-
-logLevel in runMain := Level.Error
-
-// set scalatest options: -o standard output, D durations
-testOptions in Test += Tests.Argument("-oD")
-
-parallelExecution in Test := false
+lazy val lab = (project in file(".")).
+  settings(commonSettings: _*)

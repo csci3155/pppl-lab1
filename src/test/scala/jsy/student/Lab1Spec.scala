@@ -208,7 +208,7 @@ class Lab1Spec(lab1: Lab1Like) extends FlatSpec {
     assert(repOk(treeFromList(List(1, 1, 1, 1))))
   }
 
-  "insert-delete" should "produce tress that satisfy repOk" in {
+  "insert-delete" should "produce trees that satisfy repOk" in {
     val ins = (n: Int) => (t: SearchTree) => insert(t,n)
     val del = (n: Int) => (t: SearchTree) => delete(t,n)
     ((Empty: SearchTree) /: List(ins(2), ins(6), ins(10), ins(22), del(4), del(6), ins(4), del(10), del(4)))(

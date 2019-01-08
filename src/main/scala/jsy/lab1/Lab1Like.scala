@@ -1,6 +1,7 @@
 package jsy.lab1
 
 import jsy.lab1.ast.Expr
+import jsy.lab1.Parser.parse
 
 sealed abstract class SearchTree
 case object Empty extends SearchTree
@@ -22,5 +23,5 @@ trait Lab1Like {
   def delete(t: SearchTree, n: Int): SearchTree
 
   def eval(e: Expr): Double
-  def eval(s: String): Double
+  def eval(s: String): Double = eval(parse(s))
 }
