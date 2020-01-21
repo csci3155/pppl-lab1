@@ -72,11 +72,11 @@ The files for you to edit and submit will be in `src/main/jsy/student` or `src/t
 
 ## Scala Development Tools
 
-We support [IntelliJ IDEA](https://www.jetbrains.com/idea/) on the [CU CS Virtual Machine](https://foundation.cs.colorado.edu/vm/) for development in this course. You are welcome to use any development environment, but we may not be able answer questions in your particular environment.
+We support [IntelliJ IDEA](https://www.jetbrains.com/idea/) for development in this course. You are welcome to use any development environment, but we may not be able answer questions in your particular environment.
 
-After setting up the CU CS VM, you will need to [download](https://www.jetbrains.com/idea/download/) and install IntelliJ IDEA. The Community Edition will be fine.
+You will need to [download](https://www.jetbrains.com/idea/download/) and install IntelliJ IDEA. The Community Edition will be fine.
 
-The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.11. We will standardize on 2.11.8 (the latest Scala 2.11). For the most part, you do not need to worry about the Scala version because we are using sbt for building.
+The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.12. We will standardize on 2.12.8. For the most part, you do not need to worry about the Scala version because we are using sbt for building.
 
 ### IntelliJ Import
 
@@ -90,17 +90,9 @@ Then back at the splash screen, configure your Java software development kit (Ja
 
     Configure > Project Defaults > Project Structure
 
-Under Project SDK, select an SDK from the list (either 1.7 or 1.8 are fine but not 1.6 or earlier). If there are no listed, you will have to select the directory with your SDK from
+Under Project SDK, select an SDK from the list (Java 1.8 is recommended). If there are no listed, you will have to select the directory with your SDK from
 
     New ...
-
-On the CU CS Virtual Machine, follow this procedure:
-
-    New ... > JDK
-
-And the select the following directory:
-
-    /usr/lib/jvm/default-java
 
 Then, again from the splash
 
@@ -201,36 +193,17 @@ We have a script to run Javascripty files through Node.js (as JavaScript):
 
 ## Tool Installation Summaries
 
-### CU CS VM
+### IntelliJ
 
-1. Start with the [CU CS VM](https://foundation.cs.colorado.edu/vm/).
-2. Install the CSCI 3155 package:
+1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/).
 
-        $ sudo apt-get update
-        $ sudo apt-get install cu-cs-csci-3155
+During install, choose the options to install Scala and sbt.
 
-3. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/).
+### Scala
 
-### Ubuntu Linux
+Follow this tutorial:
 
-You can also use the CSCI 3155 package from a native Ubuntu installation ([instructions](https://foundation.cs.colorado.edu/vm/#alt)).
-
-### Mac OS
-
-The tools needed for the project (sbt, Node.js, Java SDK, and IntelliJ) are available from [Homebrew](http://brew.sh/) and [Homebrew Cask](http://caskroom.io/). Once you have Homebrew and Homebrew Cask, you can install the latest JDK with
-
-    $ brew cask install java
-
-But you can also install specifically JDK 1.7 with
-
-    $ brew tap caskroom/versions
-    $ brew cask install java7
-
-Then, you need these commands for the remaining tools:
-
-    $ brew install sbt
-    $ brew install node
-    $ brew cask install intellij-idea-ce
+[Getting Started with Scala in IntelliJ](https://docs.scala-lang.org/getting-started/intellij-track/getting-started-with-scala-in-intellij.html)
 
 ## Troubleshooting
 
@@ -249,23 +222,10 @@ Here are some reasons that we have observed.
 
         Configure > Plugins
 
-### What if /usr/lib/jvm/default-java is not listed on my system?
-
-JDK 1.7 or 1.8 should be fine. We saw on some VMs that there is a JDK 1.7 listed under `/usr/lib/jvm` even though there was no `default-java` link.
-
 ### What if I can't run Lab1 or Lab1Spec from IntelliJ?
 
 It could be that you did not import your project as an SBT project. Try to import the project again. You can remove any of IntelliJ's meta-data by deleting the `.idea/` directory in `pppl-lab1/`.
 
-### Wow, the VM is really slow on my machine.
-
-We have multiple layers of virtualization with the Java VM running on top of the CU CS VM, so it is quite resource intensive. You can try to install the tools natively.
-
-By default, your VM is probably configured to use 2 GB of memory. If possible, I recommend increasing the available memory to your VM to at least 4 GB. To do that in Virtual Box, make sure your VM is shut down (not in the saved stated but actually powered off). Then, go to
-
-     Settings > System > Base Memory
-
-While not officially supported, we will try to help with native installs. Please feel free to ask for help here on the forum and help by contributing your experience.
 
 ### Why is the editor in IntelliJ is not allowing me to write anything.
 
