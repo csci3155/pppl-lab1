@@ -37,7 +37,6 @@ For Lab 1, the most important project files are shown below.
 ```
 .
 ├── README.md  (this file)
-├── jsy.sh     (run through a .jsy through Node.js)
 ├── lab1.pdf   (the lab handout)
 ├── lab1.sh    (run your Javascripty intepreter)
 ├── src
