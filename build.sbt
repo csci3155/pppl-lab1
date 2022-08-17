@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   organization := "edu.colorado.cs",
   version := "3.4.4",
 
-  scalaVersion := "2.12.8",
+  scalaVersion := "2.13.6",
   scalacOptions ++= Seq(
     "-unchecked", // Enable additional warnings where generated code depends on assumptions.
     "-feature", // Emit warning for features that should be imported explicitly
@@ -25,10 +25,11 @@ lazy val commonSettings = Seq(
     //"-Xfatal-warnings", // turn warnings into errors
   ),
   libraryDependencies ++= Seq(
-    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.6",
-    "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
-    "org.scalactic" %% "scalactic" % "3.0.0",
-    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
+    "org.scalacheck" %% "scalacheck" % "1.16.0" % "test",
+    "org.scalactic" %% "scalactic" % "3.2.13",
+    "org.scalatest" %% "scalatest" % "3.2.13" % "test",
+    "org.scalatestplus" %% "scalacheck-1-16" % "3.2.13.0" % "test"
   ),
 
   // set logging to show only errors during runs
