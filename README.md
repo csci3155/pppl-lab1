@@ -68,52 +68,54 @@ For Lab 1, the most important project files are shown below.
 ```
 
 The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
+## Installing Java, Scala
+
+### Java
+For installing Java, see https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
+
+### Scala
+Go to https://scala-lang.org, and follow installation instructions. You may need to restart after installation. (So the path variable updates).
+
+Scala Version: 2.13.6
+
+Java Version: 11
+
+You can check whether Scala is successfully installed by entering `scala -version` inside the terminal. Don’t worry if it’s not 2.13.6 exactly, the project should take care of running the correct scala version
 
 ## Scala Development Tools
 
-We support [IntelliJ IDEA](https://www.jetbrains.com/idea/) for development in this course. You are welcome to use any development environment, but we may not be able answer questions in your particular environment.
+For this course, we are supporting the use of VS Code + Metals, a Scala build server.
 
-You will need to [download](https://www.jetbrains.com/idea/download/) and install IntelliJ IDEA. The Community Edition will be fine.
+- Go to https://code.visualstudio.com/ and follow instructions there to install VS Code. 
 
-The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.12. We will standardize on 2.12.8. For the most part, you do not need to worry about the Scala version because we are using sbt for building.
+- The Metals extension (https://marketplace.visualstudio.com/items?itemName=scalameta.metals) can be installed in VS Code, from the extensions tab on the left.
 
-### IntelliJ Import
+Note: Metals may complain if it cannot find Java 11. It may prompt you to install Java 11, accepting this will download and install it for Metals specifically.
 
-From the IntelliJ splash screen on start up, first make sure that the Scala plugin is installed. Go to
+Alternatively, you can install JDK 11 manually, see the following section.
 
-    Configure > Settings or Preferences (depending on your platform) > Plugins
+### Opening the Project
 
-In the plugins list, make sure `Scala` is installed.
+Opening a scala project in VS Code, Metals should start automatically, and may prompt you to import the sbt build. If Metals does not start, you can manually start it from the Metals tab on the leftmost pane (will appear under the extension tab if Metals is installed).
 
-Then back at the splash screen, configure your Java software development kit (Java SDK) in IntelliJ
+In VS Code, open the `pppl-lab1` folder, and Metals should prompt you, as mentioned above. Alternatively, you could build from the terminal, by opening a terminal in VS Code and entering `sbt`. This opens an interactive prompty, where `compile` will build the project, `test` will run tests, and `console` will open a Scala REPL, where you can interactively import and run your code.
 
-    Configure > Project Defaults > Project Structure
+Importing the build may take a long time, this is normal.
 
-Under Project SDK, select an SDK from the list (Java 1.8 is recommended). If there are no listed, you will have to select the directory with your SDK from
+### Testing Code
 
-    New ...
+Once some of the project is implemented, naturally you want to test its functionality and correctness. In VS Code, this can either be done in the GUI, or through a terminal.
 
-Then, again from the splash
+#### GUI:
+- Opening a test suite file, a green triangle is visible next to each suite's definition. Clicking this will build and run the tests.
+- Alternatively, on the left pane of VS Code, there is a beaker icon, which provides a menu for running the tests.
 
-    Import Project
-
-and then select the directory with the project files (i.e., `pppl-lab1`) and hit Ok. On the next dialog, select
-
-    Import project from external model > SBT > Next
-
-If you do not see SBT, then you did not select the project files.
-
-On the next dialog, select
-
-    Use auto-import
-
-If you want to be able to navigate to definitions in external sources, you can select to download sources and docs before hitting Finish.
-
-Here is the IntelliJ documentation on [import](https://www.jetbrains.com/idea/help/getting-started-with-sbt.html#import_project).
+#### Terminal
+- To test code from a terminal, simply run `sbt test`, to build and run all tests. Like the GUI, this will report which tests pass/fail.
 
 ### Command-Line Tools
 
-While strictly required, you will also want to be use the command-line tools.
+While not strictly required, you will also want to be use the command-line tools.
 
 You can issue the following command to compile your code:
 
@@ -149,11 +151,7 @@ and can import the functions in your lab in the following way
 
     scala> import jsy.student.Lab1._
 
-In IntelliJ, you can start a Scala console with the project files available by selecting
-
-    Tools > Run Scala Console
-
-However, for quick experimentation in IntelliJ, it is more convenient to use a Scala Worksheet (e.g., `src/scala/jsy/student/Lab1Worksheet.sc`).
+In VS Code, you can start a terminal by going to Terminal -> New Terminal.
 
 ## ScalaTest
 
@@ -190,42 +188,6 @@ We have a script to run Javascripty files through Node.js (as JavaScript):
     $ ./jsy.sh test.jsy
 
 
-## Tool Installation Summaries
-
-### IntelliJ
-
-1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/).
-
-During install, choose the options to install Scala and sbt.
-
-### Scala
-
-Follow this tutorial:
-
-[Getting Started with Scala in IntelliJ](https://docs.scala-lang.org/getting-started/intellij-track/getting-started-with-scala-in-intellij.html)
-
 ## Troubleshooting
 
-### Why does SBT does not show up when I try to import into IntelliJ?
-
-Here are some reasons that we have observed.
-
-* In your `pppl-lab1` folder, if you do not see `build.sbt`, then it is likely that you have the project files.
-
-* You need to have sbt installed. If you're using the CU CS VM, you
-
-        $ sudo apt-get update
-        $ sudo apt-get install cu-cs-csci-3155
-
-* In your IntelliJ installation, you need to have the Scala plugin installed. From the splash screen,
-
-        Configure > Plugins
-
-### What if I can't run Lab1 or Lab1Spec from IntelliJ?
-
-It could be that you did not import your project as an SBT project. Try to import the project again. You can remove any of IntelliJ's meta-data by deleting the `.idea/` directory in `pppl-lab1/`.
-
-
-### Why is the editor in IntelliJ is not allowing me to write anything.
-
-Do you have the Vim Emulator mode turned on? Look under `Tools > Vim Emulator`. If you don't know what Vim is, then you should turn this option off.
+NOTE: If you run into issues with running the project, check that you are using Java 11, as this is a common issue. If you have another version of Java installed, you can use Jabba (https://github.com/shyiko/jabba) on Windows, or jEnv (https://www.jenv.be/) to manage JDK versions installed, and switch between your system’s or JDK 11.
