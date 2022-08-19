@@ -88,6 +88,11 @@ For this course, we are supporting the use of VS Code + Metals, a Scala build se
 
 - Go to https://code.visualstudio.com/ and follow instructions there to install VS Code. 
 
+Setup Guides for vs code:
+-- Linux Guide: https://code.visualstudio.com/docs/setup/linux
+-- MacOS Guide: https://code.visualstudio.com/docs/setup/mac
+-- Windows Guide: https://code.visualstudio.com/docs/setup/windows
+
 - The Metals extension (https://marketplace.visualstudio.com/items?itemName=scalameta.metals) can be installed in VS Code, from the extensions tab on the left.
 
 Note: Metals may complain if it cannot find Java 11. It may prompt you to install Java 11, accepting this will download and install it for Metals specifically.
