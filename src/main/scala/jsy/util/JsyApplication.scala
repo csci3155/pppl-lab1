@@ -34,10 +34,10 @@ trait JsyApplication {
     
   def processFile(file: File): Unit
 
-  def testJsy(file: File)(k: (File, File, => (Boolean, String)) => Unit) {
+  def testJsy(file: File)(k: (File, File, Unit => (Boolean, String)) => Unit) {
     val jsyext = """[.]jsy$""".r
     val ans: File = new File(jsyext.replaceAllIn(file.getPath, ".ans"))
-    k(file, ans, {
+    k(file, ans, (_)=>{
       if (!ans.exists()) {
         (false, s"Expected output file ${ans} does not exist.")
       }
@@ -80,7 +80,7 @@ trait JsyApplication {
     loop(file)
   }
 
-  def test(fileordir: File)(k: (File, File, => (Boolean, String)) => Unit) {
+  def test(fileordir: File)(k: (File, File, Unit => (Boolean, String)) => Unit) {
     doFile({ f => testJsy(f)(k) }, fileordir)
   }
 
