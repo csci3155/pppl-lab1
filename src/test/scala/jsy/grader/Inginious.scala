@@ -56,7 +56,7 @@ class Inginious extends Reporter {
       case ScopeOpened(_, _, _, _, _, _, _, _) => if (debug) println("ScopeOpened")
       case ScopeClosed(_, _, _, _, _, _, _, _) => if (debug) println("ScopeClosed")
       case ScopePending(_, _, _, _, _, _, _, _) => if (debug) println("ScopePending")
-      case TestFailed(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _) => if (debug) println("TestFailed")
+      case TestFailed(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _,_) => if (debug) println("TestFailed")
       case TestCanceled(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _) => if (debug) println("TestCanceled")
       case TestIgnored(_, _, _, _, _, _, _, _, _, _, _) => if (debug) println("TestIgnored")
       case TestPending(_, _, _, _, _, _, _, _, _, _, _, _, _) => if (debug) println("TestPending")
