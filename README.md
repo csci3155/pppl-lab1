@@ -108,10 +108,13 @@ Once some of the project is implemented, naturally you want to test its function
 
 #### GUI:
 - Opening a test suite file, a green triangle is visible next to each suite's definition. Clicking this will build and run the tests.
+![GUI file](img/gui.png)
 - Alternatively, on the left pane of VS Code, there is a beaker icon, which provides a menu for running the tests.
+![UI file](img/ui.png)
 
 #### Terminal
 - To test code from a terminal, simply run `sbt test`, to build and run all tests. Like the GUI, this will report which tests pass/fail.
+![Terminal file](img/terminal.png)
 
 ### Command-Line Tools
 
