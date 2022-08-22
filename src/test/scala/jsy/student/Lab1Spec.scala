@@ -2,7 +2,8 @@ package jsy.student
 
 import jsy.lab1._
 import jsy.tester.JavascriptyTester
-import org.scalatest._
+import org.scalatest.flatspec._
+import org.scalatest.Suites
 
 /*
  * We use a library called ScalaTest that makes it easy to write
@@ -14,7 +15,7 @@ import org.scalatest._
  * In future assignments, this will change.
  */
 
-class Lab1Spec(lab1: Lab1Like) extends FlatSpec {
+class Lab1Spec(lab1: Lab1Like) extends AnyFlatSpec {
   import lab1._
 
   /*
@@ -250,11 +251,11 @@ class Lab1Spec(lab1: Lab1Like) extends FlatSpec {
 }
 
 // An adapter class to pass in your Lab1 object.
-class Lab1SpecRunner extends Lab1Spec(Lab1)
+class Lab1SpecRunner extends Lab1Spec(jsy.student.Lab1)
 
 // The next bit of code runs a test for each .jsy file in src/test/resources/lab1.
 // The test expects a corresponding .ans file with the expected result.
-class Lab1JsyTests extends JavascriptyTester(None, "lab1", Lab1)
+class Lab1JsyTests extends JavascriptyTester(None, "lab1", jsy.student.Lab1)
 
 class Lab1Suite extends Suites(
   new Lab1SpecRunner,
