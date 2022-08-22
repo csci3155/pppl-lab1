@@ -37,7 +37,7 @@ jobs:
 
       # Prep grading repo
       - name: Prep Grading
-        run: ./gradepreplab1.sh prepare .
+        run: ./gradepreplab1.sh .
         working-directory: ./master_code
 
       # Grade the current
