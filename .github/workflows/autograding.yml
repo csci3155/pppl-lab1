@@ -28,7 +28,6 @@ jobs:
           path: student_code
 
       # Get Grading Repo
-      # TODO remove ref configuration once it is merged.
       - name: Master Repo
         uses: actions/checkout@v3
         with:
