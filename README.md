@@ -71,12 +71,15 @@ The files for you to edit and submit will be in `src/main/jsy/student` or `src/t
 ## Installing Java, Scala
 
 ### Java
-For installing Java, see https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
+You'll need to sign up with your university email into oracle (it's free) to download the jdk.
 
+For installing Java, see https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
 Installation Guide:
 - Linux:https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8
 - MacOS: https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE
 - Windows: https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA
+
+
 
 ### Scala
 Go to https://scala-lang.org, and follow installation instructions. You may need to restart after installation. (So the path variable updates).
