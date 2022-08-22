@@ -32,7 +32,6 @@ jobs:
       - name: Master Repo
         uses: actions/checkout@v3
         with:
-          ref: version-bump
           token: ${{secrets.F22_3155_PAT}}
           repository: csci3155/pppl-labdev
           path: master_code
