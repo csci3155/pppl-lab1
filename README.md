@@ -164,7 +164,7 @@ In VS Code, this can be done in the GUI (or with a VS Code terminal window using
 
 #### VS Code Testing UI
 
-Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1SpecRunner`).
+Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1JsyTests`) that have not run.
 Clicking this will build and run the tests in that class.
 
 ![Testing from file](README.img/vscode-testing-from-file.png)
