@@ -11,8 +11,7 @@ The development effort in the course materials, including these lab assignments,
 
 ## Repository Organization
 
-In the directory that you want your project files, clone this repository to your local machine. You can determine the clone URL by clicking `Clone or download` in the Github
-interface.
+In the directory that you want your project files, clone this repository to your local machine. You can determine the clone URL by clicking the `Code` button in the GitHub interface.
 
     $ git clone <your .git URL>
 
@@ -49,7 +48,7 @@ For Lab 1, the most important project files are shown below.
 │   │           │   └── ast.scala           (the Javascripty AST classes)
 │   │           ├── student              (files for you to edit will be here)
 │   │           │   ├── Lab1.scala          (implementation template to **submit**)
-│   │           │   └── Lab1Worksheet.sc    (a scratch worksheet)
+│   │           │   └── Lab1.worksheet.sc   (a scratch worksheet)
 │   │           └── util
 │   └── test
 │       ├── resources
@@ -61,77 +60,58 @@ For Lab 1, the most important project files are shown below.
 │       └── scala
 │           └── jsy
 │               ├── student
-│               │   └── Lab1Spec.scala     (your ScalaTest unit tests)
+│               │   └── Lab1Spec.scala     (your ScalaTest tests)
 │               └── tester
 │                   └── JavascriptyTester.scala
-└── testlab1.sh  (run your Lab1Spec)
+└── testlab1.sh  (run your Lab1 tests in Lab1Spec.scala)
 ```
 
 The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
-## Installing Java, Scala
 
-### Java
-You'll need to sign up with your university email into oracle (it's free) to download the jdk.
+## Prerequisites
 
-For installing Java, see https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
-Installation Guide:
-- Linux:https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8
-- MacOS: https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE
-- Windows: https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA
+The current version of project has been tested with the following:
 
+- [Scala](https://scala-lang.org/download/) 2.13 on [Java](https://www.oracle.com/java/technologies/downloads/) 11 (Oracle or OpenJDK)
 
+You may follow the installation instructions from the above links or use your platforms package manager (e.g., [Homebrew](https://brew.sh/) on macOS).
 
-### Scala
-Go to https://scala-lang.org, and follow installation instructions. You may need to restart after installation. (So the path variable updates).
-
-Scala Version: 2.13.6
-
-Java Version: 11
-
-You can check whether Scala is successfully installed by entering `scala -version` inside the terminal. Don’t worry if it’s not 2.13.6 exactly, the project should take care of running the correct scala version
-
+For working with on the lab projects, you don't have to install Scala directly. Installing [sbt](https://www.scala-sbt.org/) is sufficient to automatically download the appropriate Scala version.
 
 ## Scala Development Tools
 
-For this course, we are supporting the use of VS Code + Metals, a Scala build server.
+For this course, we are supporting the use of [VS Code](https://code.visualstudio.com/) with [Metals](https://scalameta.org/metals/), a Scala build server.
 
-- Go to https://code.visualstudio.com/ and follow instructions there to install VS Code. 
-- The Metals extension (https://marketplace.visualstudio.com/items?itemName=scalameta.metals) can be installed in VS Code, from the extensions tab on the left.
+You are welcome to use any development environment, but we may not be able answer questions in your particular environment. Another commonly used development environment for Scala is [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 
-Note: Metals may complain if it cannot find Java 11. It may prompt you to install Java 11, accepting this will download and install it for Metals specifically.
+You can install Metals through the [Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals) or from the Extensions tab within VS Code.
 
-Alternatively, you can install JDK 11 manually, see the following section.
-
-Setup Guides for vs code:
-- Linux Guide: https://code.visualstudio.com/docs/setup/linux
-- MacOS Guide: https://code.visualstudio.com/docs/setup/mac
-- Windows Guide: https://code.visualstudio.com/docs/setup/windows
+Note that Metals may complain if it cannot find Java 11. It may prompt you to install Java 11; accepting this will download and install it for Metals specifically.
 
 ### Opening the Project
 
-Opening a scala project in VS Code, Metals should start automatically, and may prompt you to import the sbt build. If Metals does not start, you can manually start it from the Metals tab on the leftmost pane (will appear under the extension tab if Metals is installed).
+The most important key combination is accessing VS Code's [Command Palette](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-palette).
+When referring to VS Code operations, we use the command name that you can find using the Command Palette, such as opening a folder.
 
-In VS Code, open the `pppl-lab1` folder, and Metals should prompt you, as mentioned above. Alternatively, you could build from the terminal, by opening a terminal in VS Code and entering `sbt`. This opens an interactive prompty, where `compile` will build the project, `test` will run tests, and `console` will open a Scala REPL, where you can interactively import and run your code.
+    > File: Open Folder...
 
-Importing the build may take a long time, this is normal.
+You can also start a terminal window within VS Code with
 
-### Testing Code
+    > Terminal: Create New Terminal
 
-Once some of the project is implemented, naturally you want to test its functionality and correctness. In VS Code, this can either be done in the GUI, or through a terminal.
+to follow any of the terminal commands above (e.g., to `git clone` a repo). This is particularly useful when using a browser-based instance of VS Code.
 
-#### GUI:
-- Opening a test suite file, a green triangle is visible next to each suite's definition. Clicking this will build and run the tests.
-![GUI file](img/gui.png)
-- Alternatively, on the left pane of VS Code, there is a beaker icon, which provides a menu for running the tests.
-![UI file](img/ui.png)
+Open the `pppl-lab1` project folder in VS Code. Metals should start automatically, and it may prompt you to import the sbt build after start up. You can click `Import build`. If you skipped importing the build earlier, you can use
 
-#### Terminal
-- To test code from a terminal, simply run `sbt test`, to build and run all tests. Like the GUI, this will report which tests pass/fail.
-![Terminal file](img/terminal.png)
+    > Metals: Import build
+
+Importing the build may take some time. This is normal.
+
+Now you can open `src/main/scala/jsy/student/Lab1.scala` and `src/test/scala/jsy/student/Lab1Spec.scala`. It is convenient to use [Quick Open](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_quick-open) to open `Lab1.scala` or `Lab1Spec.scala` from within the directory structure without typing paths or navigating in the Explorer pane.
 
 ### Command-Line Tools
 
-While not strictly required, you will also want to be use the command-line tools.
+While not strictly required, you will also want to be able to use the command-line tools.
 
 You can issue the following command to compile your code:
 
@@ -167,23 +147,31 @@ and can import the functions in your lab in the following way
 
     scala> import jsy.student.Lab1._
 
-In VS Code, you can start a terminal by going to Terminal -> New Terminal.
-
 ## ScalaTest
 
-We will be using the [ScalaTest](http://www.scalatest.org/) framework for unit testing.  Using this framework, we practice test-driven development (TDD), a standard practice in industry. You do not need to explicitly download ScalaTest.
+We will be using the [ScalaTest](http://www.scalatest.org/) framework for testing.  Using this framework, we practice test-driven development (TDD), a standard practice in industry. You do not need to explicitly download ScalaTest.
 
-We provide some unit tests in `src/test/scala/Lab1Spec.scala` to drive your implementation.  To run tests, right-click on the Lab1Suite object in the Project view and select
-
-    Run 'Lab1Suite'
-
-You can also run all test objects under the `src/test` directory via
+Once some of the project is implemented, naturally you want to test its functionality and correctness.
+We provide some unit tests in `Lab1Spec.scala` to drive your implementation.  You can also run all test objects under the `src/test` directory via
 
     > test
 
-Or you can specify, specifically
+at the sbt prompt. Or you can specify, specifically
 
-    > test-only Lab1Suite
+    > testOnly jsy.student.Lab1SpecRunner
+    
+In VS Code, this can be done in the GUI (or with a VS Code terminal window using the command-line tools).
+
+#### VS Code Testing UI
+
+Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1SpecRunner`).
+Clicking this will build and run the tests in that class.
+
+![Testing from file](README.img/vscode-testing-from-file.png)
+
+Alternatively, the Testing View (via `> View: Show Testing`) provides a hierarchical menu for running the tests in the project.
+
+![Testing view](README.img/vscode-testing-view.png)
 
 ## Your Javascripty Interpreter
 
@@ -195,7 +183,7 @@ Or for your convenience,
 
     $ ./lab1.sh <arguments>
 
-However, it is rare that you will want to run your Javascripty interpreter directly, as you will driving your implementation via tests in `Lab1Spec`.
+However, it might be less common that you will want to run your Javascripty interpreter directly, as you will be driving the completion of your implementation through tests in `Lab1Spec.scala`.
 
 ## Node.js
 
@@ -203,7 +191,12 @@ We have a script to run Javascripty files through Node.js (as JavaScript):
 
     $ ./jsy.sh test.jsy
 
-
 ## Troubleshooting
 
-NOTE: If you run into issues with running the project, check that you are using Java 11, as this is a common issue. If you have another version of Java installed, you can use Jabba (https://github.com/shyiko/jabba) on Windows, or jEnv (https://www.jenv.be/) to manage JDK versions installed, and switch between your system’s or JDK 11.
+### What if I can't run tests?
+
+If you run into issues with running the project, a common issue is using an incompatible Java version. Check that you are using Java 11.
+
+If the issue is running within VS Code, check your [Metals: Java Home](https://scalameta.org/metals/docs/editors/vscode#configure-java-version) setting.
+
+If you have another version of Java installed, you may be able to use [jEnv](https://www.jenv.be) or [Jabba](https://github.com/shyiko/jabba) to manage your installed JDK versions and to switch between them.
