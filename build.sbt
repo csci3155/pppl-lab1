@@ -37,7 +37,7 @@ lazy val commonSettings = Seq(
   logLevel in runMain := Level.Error,
 
   // JVM arguments: 8G heap size, 2M stack size
-  javaOptions in Test += "-Xmx8G -Xss2M",
+  //javaOptions in Test += "-Xmx8G -Xss2M",
 
   // scoverage options: always build with coverage
   //coverageEnabled := true,
