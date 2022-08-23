@@ -1,9 +1,9 @@
 # Principles and Practice in Programming Languages
 # Lab 1
 
-This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact me ([Bor-Yuh Evan Chang](https://www.cs.colorado.edu/~bec)).
+This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact me ([Bor-Yuh Evan Chang](https://plv.colorado.edu/bec)).
 
-Refer to the lab handouts for details about each assignment.  This file provides some information to help you get started with setting up your development environment.
+Refer to the lab handouts for details about each assignment (i.e., `lab1.pdf` for Lab 1). This file provides some information to help you get started with setting up your development environment.
 
 ## Integrity of the Course Materials
 
@@ -11,8 +11,7 @@ The development effort in the course materials, including these lab assignments,
 
 ## Repository Organization
 
-In the directory that you want your project files, clone this repository to your local machine. You can determine the clone URL by clicking `Clone or download` in the Github
-interface.
+In the directory that you want your project files, clone this repository to your local machine. You can determine the clone URL by clicking the `Code` button in the GitHub interface.
 
     $ git clone <your .git URL>
 
@@ -49,7 +48,7 @@ For Lab 1, the most important project files are shown below.
 │   │           │   └── ast.scala           (the Javascripty AST classes)
 │   │           ├── student              (files for you to edit will be here)
 │   │           │   ├── Lab1.scala          (implementation template to **submit**)
-│   │           │   └── Lab1Worksheet.sc    (a scratch worksheet)
+│   │           │   └── Lab1.worksheet.sc   (a scratch worksheet)
 │   │           └── util
 │   └── test
 │       ├── resources
@@ -61,59 +60,58 @@ For Lab 1, the most important project files are shown below.
 │       └── scala
 │           └── jsy
 │               ├── student
-│               │   └── Lab1Spec.scala     (your ScalaTest unit tests)
+│               │   └── Lab1Spec.scala     (your ScalaTest tests)
 │               └── tester
 │                   └── JavascriptyTester.scala
-└── testlab1.sh  (run your Lab1Spec)
+└── testlab1.sh  (run your Lab1 tests in Lab1Spec.scala)
 ```
 
-The files for you to edit and submit will be in `src/main/scala/jsy/student` or `src/test/scala/jsy/student`.
+The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
+
+## Prerequisites
+
+The current version of project has been tested with the following:
+
+- [Scala](https://scala-lang.org/download/) 2.13 on [Java](https://www.oracle.com/java/technologies/downloads/) 11 (Oracle or OpenJDK)
+
+You may follow the installation instructions from the above links or use your platforms package manager (e.g., [Homebrew](https://brew.sh/) on macOS).
+
+For working with on the lab projects, you don't have to install Scala directly. Installing [sbt](https://www.scala-sbt.org/) is sufficient to automatically download the appropriate Scala version.
 
 ## Scala Development Tools
 
-We support [IntelliJ IDEA](https://www.jetbrains.com/idea/) for development in this course. You are welcome to use any development environment, but we may not be able answer questions in your particular environment.
+For this course, we are supporting the use of [VS Code](https://code.visualstudio.com/) with [Metals](https://scalameta.org/metals/), a Scala build server.
 
-You will need to [download](https://www.jetbrains.com/idea/download/) and install IntelliJ IDEA. The Community Edition will be fine.
+You are welcome to use any development environment, but we may not be able answer questions in your particular environment. Another commonly used development environment for Scala is [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 
-The project is designed to work with [Scala](http://www.scala-lang.org/) is 2.12. We will standardize on 2.12.8. For the most part, you do not need to worry about the Scala version because we are using sbt for building.
+You can install Metals through the [Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals) or from the Extensions tab within VS Code.
 
-### IntelliJ Import
+Note that Metals may complain if it cannot find Java 11. It may prompt you to install Java 11; accepting this will download and install it for Metals specifically.
 
-From the IntelliJ splash screen on start up, first make sure that the Scala plugin is installed. Go to
+### Opening the Project
 
-    Configure > Settings or Preferences (depending on your platform) > Plugins
+The most important key combination is accessing VS Code's [Command Palette](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-palette).
+When referring to VS Code operations, we use the command name that you can find using the Command Palette, such as opening a folder.
 
-In the plugins list, make sure `Scala` is installed.
+    > File: Open Folder...
 
-Then back at the splash screen, configure your Java software development kit (Java SDK) in IntelliJ
+You can also start a terminal window within VS Code with
 
-    Configure > Project Defaults > Project Structure
+    > Terminal: Create New Terminal
 
-Under Project SDK, select an SDK from the list (Java 1.8 is recommended). If there are no listed, you will have to select the directory with your SDK from
+to follow any of the terminal commands above (e.g., to `git clone` a repo). This is particularly useful when using a browser-based instance of VS Code.
 
-    New ...
+Open the `pppl-lab1` project folder in VS Code. Metals should start automatically, and it may prompt you to import the sbt build after start up. You can click `Import build`. If you skipped importing the build earlier, you can use
 
-Then, again from the splash
+    > Metals: Import build
 
-    Import Project
+Importing the build may take some time. This is normal.
 
-and then select the directory with the project files (i.e., `pppl-lab1`) and hit Ok. On the next dialog, select
-
-    Import project from external model > SBT > Next
-
-If you do not see SBT, then you did not select the project files.
-
-On the next dialog, select
-
-    Use auto-import
-
-If you want to be able to navigate to definitions in external sources, you can select to download sources and docs before hitting Finish.
-
-Here is the IntelliJ documentation on [import](https://www.jetbrains.com/idea/help/getting-started-with-sbt.html#import_project).
+Now you can open `src/main/scala/jsy/student/Lab1.scala` and `src/test/scala/jsy/student/Lab1Spec.scala`. It is convenient to use [Quick Open](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_quick-open) to open `Lab1.scala` or `Lab1Spec.scala` from within the directory structure without typing paths or navigating in the Explorer pane.
 
 ### Command-Line Tools
 
-While strictly required, you will also want to be use the command-line tools.
+While not strictly required, you will also want to be able to use the command-line tools.
 
 You can issue the following command to compile your code:
 
@@ -149,27 +147,31 @@ and can import the functions in your lab in the following way
 
     scala> import jsy.student.Lab1._
 
-In IntelliJ, you can start a Scala console with the project files available by selecting
-
-    Tools > Run Scala Console
-
-However, for quick experimentation in IntelliJ, it is more convenient to use a Scala Worksheet (e.g., `src/scala/jsy/student/Lab1Worksheet.sc`).
-
 ## ScalaTest
 
-We will be using the [ScalaTest](http://www.scalatest.org/) framework for unit testing.  Using this framework, we practice test-driven development (TDD), a standard practice in industry. You do not need to explicitly download ScalaTest.
+We will be using the [ScalaTest](http://www.scalatest.org/) framework for testing.  Using this framework, we practice test-driven development (TDD), a standard practice in industry. You do not need to explicitly download ScalaTest.
 
-We provide some unit tests in `src/test/scala/Lab1Spec.scala` to drive your implementation.  To run tests, right-click on the Lab1Suite object in the Project view and select
-
-    Run 'Lab1Suite'
-
-You can also run all test objects under the `src/test` directory via
+Once some of the project is implemented, naturally you want to test its functionality and correctness.
+We provide some unit tests in `Lab1Spec.scala` to drive your implementation.  You can also run all test objects under the `src/test` directory via
 
     > test
 
-Or you can specify, specifically
+at the sbt prompt. Or you can specify, specifically
 
-    > test-only Lab1Suite
+    > testOnly jsy.student.Lab1SpecRunner
+    
+In VS Code, this can be done in the GUI (or with a VS Code terminal window using the command-line tools).
+
+#### VS Code Testing UI
+
+Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1JsyTests`) that have not run.
+Clicking this will build and run the tests in that class.
+
+![Testing from file](README.img/vscode-testing-from-file.png)
+
+Alternatively, the Testing View (via `> View: Show Testing`) provides a hierarchical menu for running the tests in the project.
+
+![Testing view](README.img/vscode-testing-view.png)
 
 ## Your Javascripty Interpreter
 
@@ -181,7 +183,7 @@ Or for your convenience,
 
     $ ./lab1.sh <arguments>
 
-However, it is rare that you will want to run your Javascripty interpreter directly, as you will driving your implementation via tests in `Lab1Spec`.
+However, it might be less common that you will want to run your Javascripty interpreter directly, as you will be driving the completion of your implementation through tests in `Lab1Spec.scala`.
 
 ## Node.js
 
@@ -189,43 +191,12 @@ We have a script to run Javascripty files through Node.js (as JavaScript):
 
     $ ./jsy.sh test.jsy
 
-
-## Tool Installation Summaries
-
-### IntelliJ
-
-1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/).
-
-During install, choose the options to install Scala and sbt.
-
-### Scala
-
-Follow this tutorial:
-
-[Getting Started with Scala in IntelliJ](https://docs.scala-lang.org/getting-started/intellij-track/getting-started-with-scala-in-intellij.html)
-
 ## Troubleshooting
 
-### Why does SBT does not show up when I try to import into IntelliJ?
+### What if I can't run tests?
 
-Here are some reasons that we have observed.
+If you run into issues with running the project, a common issue is using an incompatible Java version. Check that you are using Java 11.
 
-* In your `pppl-lab1` folder, if you do not see `build.sbt`, then it is likely that you have the project files.
+If the issue is running within VS Code, check your [Metals: Java Home](https://scalameta.org/metals/docs/editors/vscode#configure-java-version) setting.
 
-* You need to have sbt installed. If you're using the CU CS VM, you
-
-        $ sudo apt-get update
-        $ sudo apt-get install cu-cs-csci-3155
-
-* In your IntelliJ installation, you need to have the Scala plugin installed. From the splash screen,
-
-        Configure > Plugins
-
-### What if I can't run Lab1 or Lab1Spec from IntelliJ?
-
-It could be that you did not import your project as an SBT project. Try to import the project again. You can remove any of IntelliJ's meta-data by deleting the `.idea/` directory in `pppl-lab1/`.
-
-
-### Why is the editor in IntelliJ is not allowing me to write anything.
-
-Do you have the Vim Emulator mode turned on? Look under `Tools > Vim Emulator`. If you don't know what Vim is, then you should turn this option off.
+If you have another version of Java installed, you may be able to use [jEnv](https://www.jenv.be) or [Jabba](https://github.com/shyiko/jabba) to manage your installed JDK versions and to switch between them.
