@@ -38,3 +38,4 @@ jobs:
       - name: Run sbt test
         run: sbt test
         working-directory: ./student_code
+        timeout-minutes: 10

@@ -44,6 +44,7 @@ jobs:
       - name: Grade current 
         run: ./gradelab1.sh ../student_code . ../ 2>&1 | tee ../grading.log
         working-directory: ./master_code
+        timeout-minutes: 10
 
       # Display the score
       - name: Display Score
