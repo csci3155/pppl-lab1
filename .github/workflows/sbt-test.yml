@@ -4,14 +4,13 @@ name: sbt test
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main", "master" ]
+  # Triggers the workflow on pull request events but only for the "main" branch
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "feedback", "main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,3 +37,4 @@ jobs:
       - name: Run sbt test
         run: sbt test
         working-directory: ./student_code
+        timeout-minutes: 10
