@@ -2,9 +2,9 @@ name := "pppl-lab1"
 
 lazy val commonSettings = Seq(
   organization := "edu.colorado.cs",
-  version := "3.4.4",
+  version := "4.0.0",
 
-  scalaVersion := "2.13.6",
+  scalaVersion := "2.13.14",
   scalacOptions ++= Seq(
     "-unchecked", // Enable additional warnings where generated code depends on assumptions.
     "-feature", // Emit warning for features that should be imported explicitly
@@ -14,12 +14,10 @@ lazy val commonSettings = Seq(
     "-Ywarn-extra-implicit", // more than one implicit parameter section is defined
     "-Xlint:nullary-unit", // nullary methods return Unit
     "-Xlint:inaccessible", // inaccessible types in method signatures
-    "-Xlint:nullary-override", // non-nullary def f() overrides nullary def f
     "-Xlint:infer-any", // a type argument is inferred to be Any
     "-Xlint:missing-interpolator", // literal appears to be missing an interpolator id
     "-Xlint:option-implicit", // apply used implicit view
     "-Xlint:package-object-classes", // object defined in package object
-    "-Xlint:unsound-match", // may not be typesafe
     "-Xlint:stars-align", // wildcard must align with sequence component
     "-Xlint:constant", // a constant arithmetic expression results in an error
     //"-Xfatal-warnings", // turn warnings into errors
@@ -33,8 +31,9 @@ lazy val commonSettings = Seq(
   ),
 
   // set logging to show only errors during runs
-  logLevel in run := Level.Error,
-  logLevel in runMain := Level.Error,
+  logLevel / run := Level.Error,
+  logLevel / runMain := Level.Error,
+  Global / excludeLintKeys += logLevel,
 
   // JVM arguments: 8G heap size, 2M stack size
   //javaOptions in Test += "-Xmx8G -Xss2M",
