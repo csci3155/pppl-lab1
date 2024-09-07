@@ -1,6 +1,24 @@
-.idea
+# sbt
 target/
-project/target/
-project/project/
+project/target/*
+project/project/*
 .ivy2
 .sbt
+
+# Intellj
+.idea
+
+# VS Code
+.vscode
+
+# Metals
+.metals
+.bloop
+metals.sbt
+.bsp
+
+# Ammonite
+.ammonite
+
+# macOS
+.DS_Store

@@ -2,9 +2,9 @@ name := "pppl-lab1"
 
 lazy val commonSettings = Seq(
   organization := "edu.colorado.cs",
-  version := "3.4.4",
+  version := "4.0.0",
 
-  scalaVersion := "2.13.6",
+  scalaVersion := "2.13.14",
   scalacOptions ++= Seq(
     "-unchecked", // Enable additional warnings where generated code depends on assumptions.
     "-feature", // Emit warning for features that should be imported explicitly
