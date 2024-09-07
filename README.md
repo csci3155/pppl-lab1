@@ -1,9 +1,9 @@
 # Principles and Practice in Programming Languages
 # Lab 1
 
-This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact me ([Bor-Yuh Evan Chang](https://plv.colorado.edu/bec)).
+This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact [Bor-Yuh Evan Chang](https://plv.colorado.edu/bec).
 
-Refer to the lab handouts for details about each assignment (i.e., `lab1.pdf` for Lab 1). This file provides some information to help you get started with setting up your development environment.
+Refer to the lab handouts for details about each assignment. This file provides some information to help you get started with setting up your development environment.
 
 ## Integrity of the Course Materials
 
@@ -27,52 +27,34 @@ The above command will create the directory `pppl-lab1`.
 
 All other commands in this document will assume that your are in this directory.
 
-Note that the files for a single lab are committed on different branches in the repository.
-
 ## Project Files Organization
 
 For Lab 1, the most important project files are shown below.
 
 ```
 .
-├── README.md  (this file)
-├── lab1.pdf   (the lab handout)
-├── lab1.sh    (run your Javascripty intepreter)
-├── src
-│   ├── main
-│   │   └── scala
-│   │       └── jsy
-│   │           ├── lab1                 (lab-specific support files will here)
-│   │           │   ├── Lab1Like.scala      (the Lab1 interface)
-│   │           │   ├── Parser.scala        (the Javascripty parser)
-│   │           │   └── ast.scala           (the Javascripty AST classes)
-│   │           ├── student              (files for you to edit will be here)
-│   │           │   ├── Lab1.scala          (implementation template to **submit**)
-│   │           │   └── Lab1.worksheet.sc   (a scratch worksheet)
-│   │           └── util
-│   └── test
-│       ├── resources
-│       │   └── lab1    (test .jsy files with expect answers in .ans)
-│       │       ├── test101_arith.ans
-│       │       ├── test101_arith.jsy
-│       │       ├── test102_divbyzero.ans
-│       │       └── test102_divbyzero.jsy
-│       └── scala
-│           └── jsy
-│               ├── student
-│               │   └── Lab1Spec.scala     (your ScalaTest tests)
-│               └── tester
-│                   └── JavascriptyTester.scala
-└── testlab1.sh  (run your Lab1 tests in Lab1Spec.scala)
+├── README.md (this file)
+└── src
+    ├── main
+    │   └── scala
+    │       └── jsy
+    │           └── lab1
+    │               ├── Lab1.scala        (implementation template for you to **edit and submit**)
+    │               ├── Lab1.worksheet.sc (a scratch worksheet you can use to experiment with your code)
+    │               ├── Parser.scala      (a parser provided for you)
+    │               └── ast.scala         (the AST definition)
+    └── test
+        └── scala
+            └── jsy
+                └── lab1
+                    └── Lab1Spec.scala    (test cases you can use to test your implementation)
 ```
-
-The files for you to edit and submit will be in `src/main/jsy/student` or `src/test/scala/jsy/student`.
 
 ## Prerequisites
 
 The current version of project has been tested with the following:
 
-- [Scala](https://scala-lang.org/download/) 2.13 on [Java](https://www.oracle.com/java/technologies/downloads/) 11 (Oracle or OpenJDK)
+- [Scala](https://scala-lang.org/download/) 2.13.14 on [Java](https://www.oracle.com/java/technologies/downloads/) 11
 
 You may follow the installation instructions from the above links or use your platforms package manager (e.g., [Homebrew](https://brew.sh/) on macOS).
 
@@ -99,7 +81,7 @@ You can also start a terminal window within VS Code with
 
     > Terminal: Create New Terminal
 
-to follow any of the terminal commands above (e.g., to `git clone` a repo). This is particularly useful when using a browser-based instance of VS Code.
+to follow any of the terminal commands above (e.g., to `git clone` a repo). This is particularly useful when using a browser-based instance of VS Code like on [coding.csel.io](https://coding.csel.io).
 
 Open the `pppl-lab1` project folder in VS Code. Metals should start automatically, and it may prompt you to import the sbt build after start up. You can click `Import build`. If you skipped importing the build earlier, you can use
 
@@ -107,11 +89,11 @@ Open the `pppl-lab1` project folder in VS Code. Metals should start automaticall
 
 Importing the build may take some time. This is normal.
 
-Now you can open `src/main/scala/jsy/student/Lab1.scala` and `src/test/scala/jsy/student/Lab1Spec.scala`. It is convenient to use [Quick Open](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_quick-open) to open `Lab1.scala` or `Lab1Spec.scala` from within the directory structure without typing paths or navigating in the Explorer pane.
+Now you can open `src/main/scala/jsy/lab1/Lab1.scala` and `src/test/scala/jsy/lab1/Lab1Spec.scala`. It is convenient to use [Quick Open](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_quick-open) to open `Lab1.scala` or `Lab1Spec.scala` from within the directory structure without typing paths or navigating in the Explorer pane.
 
 ### Command-Line Tools
 
-While not strictly required, you will also want to be able to use the command-line tools.
+While not strictly required, you may also want to use the command-line tools.
 
 You can issue the following command to compile your code:
 
@@ -145,7 +127,7 @@ From sbt, you can start the Scala console using the command
 
 and can import the functions in your lab in the following way
 
-    scala> import jsy.student.Lab1._
+    scala> import jsy.lab1.Lab1._
 
 ## ScalaTest
 
@@ -156,40 +138,18 @@ We provide some unit tests in `Lab1Spec.scala` to drive your implementation.  Yo
 
     > test
 
-at the sbt prompt. Or you can specify, specifically
-
-    > testOnly jsy.student.Lab1SpecRunner
+at the sbt prompt.
     
 In VS Code, this can be done in the GUI (or with a VS Code terminal window using the command-line tools).
 
 #### VS Code Testing UI
 
-Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1JsyTests`) that have not run.
+Open `Lab1Spec.scala`. Then, a green triangle is visible next to each test class's definition (e.g., `Lab1Spec`) or test case that have not run.
 Clicking this will build and run the tests in that class.
 
-![Testing from file](README.img/vscode-testing-from-file.png)
+Alternatively, the Testing View (via `> View: Show Testing`) provides a hierarchical menu for running the tests in the project. You can run all tests in the project by clicking the triangle at the top of the Testing View.
 
-Alternatively, the Testing View (via `> View: Show Testing`) provides a hierarchical menu for running the tests in the project.
-
-![Testing view](README.img/vscode-testing-view.png)
-
-## Your Javascripty Interpreter
-
-You can run your Javascripty interpreter with a file (e.g., tests in `src/test/resources`) from sbt or the command-line:
-
-    > runMain jsy.student.Lab1 <arguments>
-
-Or for your convenience,
-
-    $ ./lab1.sh <arguments>
-
-However, it might be less common that you will want to run your Javascripty interpreter directly, as you will be driving the completion of your implementation through tests in `Lab1Spec.scala`.
-
-## Node.js
-
-We have a script to run Javascripty files through Node.js (as JavaScript):
-
-    $ ./jsy.sh test.jsy
+See [Running and debugging your code](https://scalameta.org/metals/docs/editors/vscode/#running-and-debugging-your-code) in the Metals documentation for more information.
 
 ## Troubleshooting
 
@@ -199,4 +159,10 @@ If you run into issues with running the project, a common issue is using an inco
 
 If the issue is running within VS Code, check your [Metals: Java Home](https://scalameta.org/metals/docs/editors/vscode#configure-java-version) setting.
 
-If you have another version of Java installed, you may be able to use [jEnv](https://www.jenv.be) or [Jabba](https://github.com/shyiko/jabba) to manage your installed JDK versions and to switch between them.
+If you have another version of Java installed, you may be able to use [jEnv](https://www.jenv.be) to manage your installed JDK versions and to switch between them.
+
+### What if I can't import the build?
+
+Have you opened the files using JupyterLab? If so, you may need to delete the `.ipynb_checkpoints` directory that JupyterLab creates. This directory can interfere with the build import process.
+
+Make sure your VS Code workspace is opened to the `pppl-lab1` directory and importantly, not a parent directory. Refer to the [Opening the Project](#opening-the-project) instructions above.

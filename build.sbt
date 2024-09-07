@@ -23,11 +23,8 @@ lazy val commonSettings = Seq(
     //"-Xfatal-warnings", // turn warnings into errors
   ),
   libraryDependencies ++= Seq(
-    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
-    "org.scalacheck" %% "scalacheck" % "1.16.0" % "test",
-    "org.scalactic" %% "scalactic" % "3.2.13",
-    "org.scalatest" %% "scalatest" % "3.2.13" % "test",
-    "org.scalatestplus" %% "scalacheck-1-16" % "3.2.13.0" % "test"
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
+    "org.scalatest" %% "scalatest" % "3.2.19" % "test"
   ),
 
   // set logging to show only errors during runs
@@ -43,7 +40,7 @@ lazy val commonSettings = Seq(
 
   // scalatest options: -o standard output, D durations
   // -e stderr
-  testOptions in Test += Tests.Argument("-e")
+  Test / testOptions += Tests.Argument("-e")
 )
 
 lazy val lab = (project in file(".")).
