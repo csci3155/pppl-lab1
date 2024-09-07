@@ -6,7 +6,7 @@ import scala.util.parsing.input.Positional
  * @author Bor-Yuh Evan Chang
  */
 object ast {
-  sealed abstract class Expr extends Positional
+  sealed trait Expr extends Positional
   
   /* Literals and Values*/
   case class N(n: Double) extends Expr
@@ -15,12 +15,10 @@ object ast {
   case class Unary(uop: Uop, e1: Expr) extends Expr
   case class Binary(bop: Bop, e1: Expr, e2: Expr) extends Expr
 
-  sealed abstract class Uop
-  
+  sealed trait Uop
   case object Neg extends Uop /* - */
 
-  sealed abstract class Bop
-  
+  sealed trait Bop
   case object Plus extends Bop /* + */
   case object Minus extends Bop /* - */
   case object Times extends Bop /* * */
@@ -36,7 +34,7 @@ object ast {
    * Pretty-print values.
    * 
    * We do not override the toString method so that the abstract syntax can be printed
-   * as is.
+   * as-is.
    */
   def pretty(v: Expr): String = {
     require(isValue(v))

@@ -1,6 +1,3 @@
-/**
- *
- */
 package jsy.lab1
 
 import jsy.lab1.ast._
@@ -19,19 +16,19 @@ trait JSTokens extends token.StdTokens {
 }
 
 class Lexer extends lexical.StdLexical with JSTokens {
-  override def token: Parser[Token] =
+  override def token: this.Parser[Token] =
     decimal ~ opt(exponent) ^^ {
       case dec ~ exp => FloatLiteral(List(Some(dec), exp).flatten.mkString)
     } |
     super.token
     
-  def decimal: Parser[String] =
+  def decimal: this.Parser[String] =
     rep1(digit) ~ opt('.' ~ rep(digit)) ^^ {
       case ws ~ fs =>
         List(Some(ws), fs map { mkList }).flatten.flatten.mkString
     }
   
-  def exponent: Parser[String] =
+  def exponent: this.Parser[String] =
     (accept('e') | accept('E')) ~ opt(accept('+') | accept('-')) ~ rep1(digit) ^^ { 
       case exp ~ sign ~ digits =>
         List(Some(List(exp)), sign map { List(_) }, Some(digits)).flatten.flatten.mkString
@@ -52,10 +49,10 @@ trait TokenParser extends syntactical.StdTokenParsers {
 object Parser extends TokenParser {
   /* Lexer Set Up */
   lexical.delimiters ++= List("(", ")", "-", "+", "*", "/")
-  
-  def prog: Parser[Expr] = expr
 
-  def expr: Parser[Expr] = binary(0)
+  def prog: this.Parser[Expr] = expr
+
+  def expr: this.Parser[Expr] = binary(0)
     
   val binaryOperators: Vector[List[(String, (Expr, Expr) => Expr)]] = {
     def createBinaryFunction(op: Bop): (Expr, Expr) => Expr =
@@ -68,46 +65,46 @@ object Parser extends TokenParser {
     )
   }
 
-  def binary(level: Int): Parser[Expr] =
+  def binary(level: Int): this.Parser[Expr] =
     if (level >= binaryOperators.length)
       unary
     else
       binary(level + 1) * bop(level)
 
-  def bop(level: Int): Parser[(Expr, Expr) => Expr] = {
-    def doBop(opf: (String, (Expr, Expr) => Expr)): Parser[(Expr, Expr) => Expr] = {
+  def bop(level: Int): this.Parser[(Expr, Expr) => Expr] = {
+    def doBop(opf: (String, (Expr, Expr) => Expr)): this.Parser[(Expr, Expr) => Expr] = {
       val (op, f) = opf
       withpos(op) ^^ { case (pos, _) => ((e1, e2) => f(e1, e2) setPos pos) }
     }
     val bopf0 :: bopfrest = binaryOperators(level)
-    (doBop(bopf0) /: bopfrest)((acc, bopf) => acc | doBop(bopf))
+    bopfrest.foldLeft(doBop(bopf0)) { (acc, bopf) => acc | doBop(bopf) }
   }
 
-  def unary: Parser[Expr] =
+  def unary: this.Parser[Expr] =
     positioned(uop ~ unary ^^ { case op ~ e => op(e) }) |
     term
 
-  def uop: Parser[Expr => Expr] =
+  def uop: this.Parser[Expr => Expr] =
     "-" ^^ (_ => (e: Expr) => Unary(Neg, e))
 
-  def term: Parser[Expr] =
+  def term: this.Parser[Expr] =
     positioned(
       floatLit ^^ (s => N(s.toDouble))
     ) |
     "(" ~> expr <~ ")" |
     failure("expected an expression")
     
-  def withpos[T](q: => Parser[T]): Parser[(Position, T)] = Parser { in =>
+  def withpos[T](q: => this.Parser[T]): this.Parser[(Position, T)] = this.Parser { in =>
     q(in) match {
       case Success(t, in1) => Success((in.pos,t), in1)
       case ns: NoSuccess => ns
     }
   }
   
-  def withposrep[T](q: => Parser[T]): Parser[List[(Position,T)]] =
+  def withposrep[T](q: => this.Parser[T]): this.Parser[List[(Position,T)]] =
     rep(withpos(q))
     
-  def withposrep1[T](q: => Parser[T]): Parser[List[(Position,T)]] =
+  def withposrep1[T](q: => this.Parser[T]): this.Parser[List[(Position,T)]] =
     rep1(withpos(q))
     
   private var parseSource: String = "<source>"
@@ -125,7 +122,8 @@ object Parser extends TokenParser {
   def parseTokens(tokens: lexical.Scanner): Expr = {
     phrase(prog)(tokens) match {
       case Success(e, _) => e
-      case NoSuccess(msg, next) => throw new SyntaxError(msg, next)
+      case Error(msg, next) => throw new SyntaxError(msg, next)
+      case Failure(msg, next) => throw new SyntaxError(msg, next)
     }
   }
     

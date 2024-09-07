@@ -1,11 +1,6 @@
-package jsy.student
+package jsy.lab1
 
-import jsy.lab1._
-
-object Lab1 extends jsy.util.JsyApplication with jsy.lab1.Lab1Like {
-  import jsy.lab1.Parser
-  import jsy.lab1.ast._
-
+object Lab1 {
   /*
    * CSCI 3155: Lab 1
    * <Your Name>
@@ -22,11 +17,6 @@ object Lab1 extends jsy.util.JsyApplication with jsy.lab1.Lab1Like {
    * '???' expression is a Scala expression that throws a NotImplementedError
    * exception.
    *
-   * Do not make other modifications to this template, such as
-   * - adding "extends App" or "extends Application" to your Lab object,
-   * - adding a "main" method, and
-   * - leaving any failing asserts.
-   *
    * Your lab will not be graded if it does not compile.
    *
    * This template compiles without error. Before you submit comment out any
@@ -35,29 +25,26 @@ object Lab1 extends jsy.util.JsyApplication with jsy.lab1.Lab1Like {
    */
 
   /*
-   * Example: Test-driven development of plus
+   * Example: Test-driven development of `plus`
    *
    * A convenient, quick-and-dirty way to experiment, especially with small code
    * fragments, is to use the interactive Scala interpreter. The simplest way
-   * to use the interactive Scala interpreter in IntelliJ is through a worksheet,
-   * such as Lab1Worksheet.sc. A Scala Worksheet (e.g., Lab1Worksheet.sc) is code
-   * evaluated in the context of the project with results for each expression
-   * shown inline.
+   * to use the interactive Scala interpreter is through a worksheet, such as
+   * Lab1.worksheet.sc. A Scala Worksheet is code evaluated in the context of
+   * the project with results for each expression shown inline (somewhat like a
+   * Jupyter notebook).
    *
-   * Step 0: Sketch an implementation in Lab1.scala using ??? for unimmplemented things.
-   * Step 1: Do some experimentation in Lab1Worksheet.sc.
+   * Step 0: Sketch an implementation in Lab1.scala using ??? for unimplemented things.
+   * Step 1: Do some experimentation in Lab1.worksheet.sc.
    * Step 2: Write a test in Lab1Spec.scala, which should initially fail because of the ???.
-   * Step 3: Fill in the ??? to finish the implementation to make your test pass.
+   * Step 3: Fill in the ??? here to finish the implementation to make your test pass.
    */
 
   //def plus(x: Int, y: Int): Int = ???
-  def plus(x: Int, y: Int): Int = x + y
+  def plus(x: Int, y: Int): Int = 0
+  // def plus(x: Int, y: Int): Int = x + y
 
   /* Exercises */
-
-  def abs(n: Double): Double = ???
-
-  def xor(a: Boolean, b: Boolean): Boolean = ???
 
   def repeat(s: String, n: Int): String = ???
 
@@ -74,23 +61,21 @@ object Lab1 extends jsy.util.JsyApplication with jsy.lab1.Lab1Like {
 
   /* Search Tree */
 
-  // Defined in Lab1Like.scala:
-  //
-  // sealed abstract class SearchTree
-  // case object Empty extends SearchTree
-  // case class Node(l: SearchTree, d: Int, r: SearchTree) extends SearchTree
+  sealed abstract class Tree
+  case object Empty extends Tree
+  case class Node(l: Tree, d: Int, r: Tree) extends Tree
 
-  def repOk(t: SearchTree): Boolean = {
-    def check(t: SearchTree, min: Int, max: Int): Boolean = t match {
-      case Empty => true
+  def repOk(t: Tree): Boolean = {
+    def check(t: Tree, min: Int, max: Int): Boolean = t match {
+      case Empty         => true
       case Node(l, d, r) => ???
     }
     check(t, Int.MinValue, Int.MaxValue)
   }
 
-  def insert(t: SearchTree, n: Int): SearchTree = ???
+  def insert(t: Tree, n: Int): Tree = ???
 
-  def deleteMin(t: SearchTree): (SearchTree, Int) = {
+  def deleteMin(t: Tree): (Tree, Int) = {
     require(t != Empty)
     (t: @unchecked) match {
       case Node(Empty, d, r) => (r, d)
@@ -100,32 +85,25 @@ object Lab1 extends jsy.util.JsyApplication with jsy.lab1.Lab1Like {
     }
   }
 
-  def delete(t: SearchTree, n: Int): SearchTree = ???
+  def delete(t: Tree, n: Int): Tree = ???
 
-  /* JavaScripty */
+  /* Evaluate the JavaScripty Calculator Language */
+
+  /* We import `jsy.lab1.ast._` so that we can make use of the Expr type defined
+   * there. Take a look at ast.scala to see what the Expr type looks like, as well
+   * some helper functions for defining values (`isValue`) and pretty-printing
+   * (`pretty`) that you are welcome to use.
+   */
+  import jsy.lab1.ast._
 
   def eval(e: Expr): Double = e match {
     case N(n) => ???
-    case _ => ???
+    case _    => ???
   }
 
-
- /* Interface to run your interpreter from the command-line.  You can ignore the code below. */
- def processFile(file: java.io.File) {
-    if (debug) { println("Parsing ...") }
-
-    val expr = Parser.parseFile(file)
-
-    if (debug) {
-      println("\nExpression AST:\n  " + expr)
-      println("------------------------------------------------------------")
-    }
-
-    if (debug) { println("Evaluating ...") }
-
-    val v = eval(expr)
-
-    println(prettyNumber(v))
-  }
+  /* We also overload `eval` to take a String and parse it into an Expr and then
+   * evaluate it  using your `eval` function defined above.
+   */
+  def eval(e: String): Double = eval(Parser.parse(e))
 
 }
