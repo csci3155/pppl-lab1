@@ -32,7 +32,7 @@ jobs:
           java-version: 11
           cache: sbt
 
-      - name: Run sbt test
+      - name: Run sbt compile
         run: sbt compile
         working-directory: ./student_code
         timeout-minutes: 10
