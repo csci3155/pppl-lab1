@@ -40,7 +40,7 @@ lazy val commonSettings = Seq(
 
   // scalatest options: -o standard output, D durations
   // -e stderr
-  testOptions in Test += Tests.Argument("-e")
+  Test / testOptions += Tests.Argument("-e")
 )
 
 lazy val lab = (project in file(".")).
