@@ -2,16 +2,26 @@ package jsy.lab1
 
 import org.scalatest.flatspec.AnyFlatSpec
 import jsy.lab1.Parser.parse
+import jsy.lab1.ast._
+
+/* Import your Lab 1 code. */
+import Lab1._
 
 /*
  * We use a library called ScalaTest that makes it easy to write
  * and run tests.
  */
 
-class Lab1Spec extends AnyFlatSpec {
-  /* Import your Lab 1 code. */
-  import Lab1._
+ /**
+  * This is an empty test class that you may use to write your own tests.
+  */
+class Lab1StudentSpec extends AnyFlatSpec {
+}
 
+/**
+  * Here is a test class with some existing tests for the Lab 1 assignment.
+  */
+class Lab1Spec extends AnyFlatSpec {
   /*
    * Example: Test-driven development of plus
    *
