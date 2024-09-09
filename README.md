@@ -3,7 +3,9 @@
 
 This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact [Bor-Yuh Evan Chang](https://plv.colorado.edu/bec).
 
-Refer to the [lab handout](inductive-data-types-lab.html) for details about the assignment. This file provides some information to help you get started with setting up your development environment.
+Refer to the [lab handout](inductive-data-types-lab.ipynb) in this repository for details about the assignment. The current version of the lab handout is available on the web [here](https://csci3155.cs.colorado.edu/pppl-course/book/inductive-data-types-lab.html).
+
+This file provides some information to help you get started with setting up your development environment.
 
 ## Integrity of the Course Materials
 
@@ -34,7 +36,6 @@ For Lab 1, the most important project files are shown below.
 ```
 .
 ├── README.md (this file)
-├── inductive-data-types-lab.html         (the lab handout)
 ├── inductive-data-types-lab.ipynb        (the lab handout as a Jupyter Notebook)
 └── src
     ├── main
