@@ -223,7 +223,6 @@ class Lab1Spec extends AnyFlatSpec {
     4 -> ("4 / 2", 2),
     5 -> ("4 / 0", Double.PositiveInfinity),
     6 -> ("-4 / 0", Double.NegativeInfinity),
-    7 -> ("0 / 0", Double.NaN),
     8 -> ("1 + 2 * 3", 7),
     9 -> ("1 + (2 - 3) * 4 / (-5)", 1.8)
   )
@@ -242,8 +241,11 @@ class Lab1Spec extends AnyFlatSpec {
   it should "evaluate evalTests(4) correctly" in { assertEvalTests(4) }
   it should "evaluate evalTests(5) correctly" in { assertEvalTests(5) }
   it should "evaluate evalTests(6) correctly" in { assertEvalTests(6) }
-  it should "evaluate evalTests(7) correctly" in { assertEvalTests(7) }
+  it should "evaluate 0 / 0 correctly" in { assert( eval("0 / 0").isNaN ) }
   it should "evaluate evalTests(8) correctly" in { assertEvalTests(8) }
   it should "evaluate evalTests(9) correctly" in { assertEvalTests(9) }
+
+
+
 
 }
