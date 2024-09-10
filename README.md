@@ -1,5 +1,6 @@
 # Principles and Practice in Programming Languages
 # Lab 1
+# Recursion, Inductive Data Types, and Abstract Syntax
 
 This repository contains the student project files. If you are an instructor looking to re-use these materials, please contact [Bor-Yuh Evan Chang](https://plv.colorado.edu/bec).
 
