@@ -43,5 +43,5 @@ lazy val commonSettings = Seq(
   Test / testOptions += Tests.Argument("-e")
 )
 
-lazy val lab = (project in file(".")).
+lazy val lab1 = (project in file(".")).
   settings(commonSettings: _*)
