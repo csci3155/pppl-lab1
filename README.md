@@ -58,7 +58,7 @@ For Lab 1, the most important project files are shown below.
 
 The current version of project has been tested with the following:
 
-- [Scala](https://scala-lang.org/download/) 2.13.14 on [Java](https://www.oracle.com/java/technologies/downloads/) 11
+- [Scala](https://scala-lang.org/download/) 3.6.4 on [Java](https://www.oracle.com/java/technologies/downloads/) 11
 
 You may follow the installation instructions from the above links or use your platforms package manager (e.g., [Homebrew](https://brew.sh/) on macOS).
 
@@ -131,7 +131,7 @@ From sbt, you can start the Scala console using the command
 
 and can import the functions in your lab in the following way
 
-    scala> import jsy.lab1.Lab1._
+    scala> import jsy.lab1.Lab1.*
 
 ## ScalaTest
 

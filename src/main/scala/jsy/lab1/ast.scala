@@ -44,5 +44,5 @@ object ast {
   }
 
   def prettyNumber(n: Double): String =
-    if (n.isWhole) "%.0f" format n else n.toString
+    if (n.isWhole) "%.0f".format(n) else n.toString
 }
