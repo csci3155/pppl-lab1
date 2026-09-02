@@ -55,9 +55,6 @@ control systems (e.g., `git` with GitHub). While it is almost overkill
 to use these standard software engineering tools for this lab, we get
 practice using these tools in the small.
 
-If you like, you may use this notebook for experimentation. However,
-**please make sure your code is in `Lab1.scala`; this notebook will not
-graded.**
 
 == Recursion
 
