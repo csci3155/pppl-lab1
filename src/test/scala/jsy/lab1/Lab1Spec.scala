@@ -2,10 +2,11 @@ package jsy.lab1
 
 import org.scalatest.flatspec.AnyFlatSpec
 import jsy.lab1.Parser.parse
-import jsy.lab1.ast._
+import jsy.lab1.ast.*
+import jsy.lab1.tree.*
 
 /* Import your Lab 1 code. */
-import Lab1._
+import Lab1.*
 
 /*
  * We use a library called ScalaTest that makes it easy to write

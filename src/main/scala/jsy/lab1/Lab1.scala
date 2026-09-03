@@ -61,9 +61,7 @@ object Lab1 {
 
   /* Search Tree */
 
-  sealed abstract class Tree
-  case object Empty extends Tree
-  case class Node(l: Tree, d: Int, r: Tree) extends Tree
+  import jsy.lab1.tree.{Tree, Empty, Node}
 
   def repOk(t: Tree): Boolean = {
     def check(t: Tree, min: Int, max: Int): Boolean = t match {
@@ -89,12 +87,12 @@ object Lab1 {
 
   /* Evaluate the JavaScripty Calculator Language */
 
-  /* We import `jsy.lab1.ast._` so that we can make use of the Expr type defined
+  /* We import `jsy.lab1.ast.*` so that we can make use of the Expr type defined
    * there. Take a look at ast.scala to see what the Expr type looks like, as well
    * some helper functions for defining values (`isValue`) and pretty-printing
    * (`pretty`) that you are welcome to use.
    */
-  import jsy.lab1.ast._
+  import jsy.lab1.ast.*
 
   def eval(e: Expr): Double = e match {
     case N(n) => ???
