@@ -1,9 +1,9 @@
 package jsy.lab1
 
-import jsy.lab1.ast._
-import scala.util.parsing.combinator._
-import scala.util.parsing.input.{StreamReader}
-import java.io.{InputStreamReader,FileInputStream}
+import jsy.lab1.ast.*
+import scala.util.parsing.combinator.*
+import scala.util.parsing.input.StreamReader
+import java.io.{InputStreamReader, FileInputStream}
 import java.io.InputStream
 import java.io.File
 import scala.util.parsing.input.Position
@@ -38,7 +38,7 @@ class Lexer extends lexical.StdLexical with JSTokens {
 
 trait TokenParser extends syntactical.StdTokenParsers {
   type Tokens = JSTokens
-  val lexical = new Lexer
+  val lexical: Lexer = new Lexer
   
   import lexical.FloatLiteral
   
@@ -76,7 +76,7 @@ object Parser extends TokenParser {
       val (op, f) = opf
       withpos(op) ^^ { case (pos, _) => ((e1, e2) => f(e1, e2) setPos pos) }
     }
-    val bopf0 :: bopfrest = binaryOperators(level)
+    val bopf0 :: bopfrest = binaryOperators(level): @unchecked
     bopfrest.foldLeft(doBop(bopf0)) { (acc, bopf) => acc | doBop(bopf) }
   }
 

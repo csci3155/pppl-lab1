@@ -22,7 +22,7 @@ n + 3
 //jsy.lab1.Lab1.plus(3, 4)
 
 /* We can imports all of the functions from your `jsy.lab1.Lab1` object. */
-import jsy.lab1.Lab1._
+import jsy.lab1.Lab1.*
 //plus(3, 4)
 
 /* We can check the implementation here, though it better to write tests
@@ -42,8 +42,8 @@ import jsy.lab1.Lab1._
 
 //assert(repeat("a", 3) == "aaa")
 
-/* We import jsy.lab.ast._ to use the AST nodes. */
-import jsy.lab1.ast._
+/* We import jsy.lab.ast.* to use the AST nodes. */
+import jsy.lab1.ast.*
 
 /* A parser defines how to translate concrete syntax (i.e., strings a programmer types)
  * into an abstract syntax tree (AST) that we use to evaluate the program. A parser
