@@ -1,14 +1,14 @@
+# This is a basic workflow to help you get started with Actions
 name: sbt test
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
-    branches: [ "feedback", "main"]
+    branches: [ "feedback", "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,23 +16,24 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get Student Repo
+        timeout-minutes: 2
         uses: actions/checkout@v3
         with:
           path: student_code
 
-      - name: Setup JDK
-        uses: actions/setup-java@v3
+      - name: Install sbt
+        uses: coursier/setup-action@v3
         with:
-          distribution: temurin
-          java-version: 11
-          cache: sbt
+          jvm: temurin:25
+          apps: sbt
 
       - name: Run sbt test
-        run: sbt test
+        timeout-minutes: 2
         working-directory: ./student_code
-        timeout-minutes: 10
+        run: sbt test
